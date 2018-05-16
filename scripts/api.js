@@ -31,8 +31,17 @@ const api = (function(){
     });
   };
 
+  const findAndDelete = function(id, name, callback) {
+    $.ajax({
+      url: `${BASE_URL}/items${id}`,
+      method: 'DELETE',
+      contentType: 'application/json',
+      data: id, name, 
+      success: callback,
+    })};
+
   return {
-    getItems, createItem, updateItem,
+    getItems, createItem, updateItem, findAndDelete
   };
 }
 

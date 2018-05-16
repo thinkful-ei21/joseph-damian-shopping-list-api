@@ -32,6 +32,7 @@ const store = (function(){
   const findAndDelete = function(id) {
     this.items = this.items.filter(item => item.id !== id);
   };
+
   const toggleCheckedFilter = function() {
     this.hideCheckedItems = !this.hideCheckedItems;
   };
