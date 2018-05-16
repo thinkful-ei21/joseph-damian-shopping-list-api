@@ -30,7 +30,9 @@ const api = (function(){
       url: `${BASE_URL}/items/${id}`,
       method: 'PATCH',
       contentType: 'application/json',
-      data: JSON.stringify(updateData),
+      data: JSON.stringify({
+        name: updateData
+      }),
       success: callback,
       error: function(err){
         console.log('Something caught fire.');
