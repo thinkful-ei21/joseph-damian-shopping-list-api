@@ -49,7 +49,6 @@ const shoppingList = (function(){
     }
   
     // render the shopping list in the DOM
-    console.log('`render` ran');
     const shoppingListItemsString = generateShoppingItemsString(items);
   
     // insert that HTML into the DOM
@@ -87,13 +86,9 @@ const shoppingList = (function(){
   }
   
   function handleDeleteItemClicked() {
-    // like in `handleItemCheckClicked`, we use event delegation
     $('.js-shopping-list').on('click', '.js-item-delete', event => {
-      // get the index of the item in store.items
       const id = getItemIdFromElement(event.currentTarget);
-      // delete the item
-      store.findAndDelete(id);
-      // render the updated shopping list
+      api.deleteItem(id, store.findAndDelete(id));
       render();
     });
   }
@@ -103,9 +98,9 @@ const shoppingList = (function(){
       event.preventDefault();
       const id = getItemIdFromElement(event.currentTarget);
       const itemName = $(event.currentTarget).find('.shopping-item').val();
-      api.updateItem(id,itemName, store.findAndUpdate(id, itemName));
+      api.updateItem(id, itemName, store.findAndUpdate(id, itemName));
+      render();
     });
-    render();
   }
   
   function handleToggleFilterClick() {
@@ -132,7 +127,6 @@ const shoppingList = (function(){
     handleShoppingListSearch();
   }
 
-  // This object contains the only exposed methods from this module:
   return {
     render: render,
     bindEventListeners: bindEventListeners,

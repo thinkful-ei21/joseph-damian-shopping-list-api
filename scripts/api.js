@@ -14,45 +14,45 @@ const api = (function(){
       name: name
     });
     $.ajax({
-      url: `${BASE_URL}/itemseee/`,
+      url: `${BASE_URL}/items/`,
       method: 'POST',
       contentType: 'application/json',
       data: newItem,
       success: callback,
       error: function(err){
-        console.log(err);
-        store.errorReport(err);
+        console.log('Something caught fire.');
       },
     });
   };
 
-  const updateItem = function(id, name, callback){
+  const updateItem = function(id, updateData, callback){
     $.ajax({
       url: `${BASE_URL}/items/${id}`,
       method: 'PATCH',
       contentType: 'application/json',
-      data: JSON.stringify({name: name}),
+      data: JSON.stringify(updateData),
       success: callback,
-      error: JSON.stringify,
+      error: function(err){
+        console.log('Something caught fire.');
+      },
     });
   };
 
-  const findAndDelete = function(id, callback) {
+  const deleteItem = function(id, callback) {
     $.ajax({
-      url: `${BASE_URL}items${id}`,
+      url: `${BASE_URL}/items/${id}`,
       method: 'DELETE',
       contentType: 'application/json',
       data: JSON.stringify({id: id}), 
       success: callback,
       error: function(err){
-        console.log(err + 'error');
-        store.errorReport(err);
+        console.log('Something caught fire.');
       },
     });
   };
 
   return {
-    getItems, createItem, updateItem, findAndDelete
+    getItems, createItem, updateItem, deleteItem,
   };
 }
 
