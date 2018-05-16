@@ -104,8 +104,8 @@ const shoppingList = (function(){
       const id = getItemIdFromElement(event.currentTarget);
       const itemName = $(event.currentTarget).find('.shopping-item').val();
       api.updateItem(id,itemName, store.findAndUpdate(id, itemName));
-      render();
     });
+    render();
   }
   
   function handleToggleFilterClick() {

@@ -41,6 +41,10 @@ const store = (function(){
     this.searchTerm = term;
   };
 
+  const errorReport = function(error){
+    console.log('store' + JSON.stringify(error));
+  };
+
   return {
     items: [],
     hideCheckedItems: false,
@@ -51,6 +55,7 @@ const store = (function(){
     toggleCheckedFilter,
     setSearchTerm,
     findAndUpdate,
+    errorReport,
   };
   
 }());
